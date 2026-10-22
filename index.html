@@ -758,21 +758,6 @@ function renderQuiz() {
         ${answer}
       </label>
     `).join("")}
-
-    ${
-      selected === undefined
-      ? ""
-      : `
-        <div class="feedback">
-          <strong>
-            ${selected === q[2] ? "Richtig!" : "Nicht ganz richtig."}
-          </strong>
-
-          <p>${q[3]}</p>
-        </div>
-      `
-    }
-
     <div class="actions">
       <button
         id="back"
