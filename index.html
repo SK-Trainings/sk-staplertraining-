@@ -4,151 +4,1295 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>SK-Staplertraining | Wissen & Schulungsberater</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#f2f5f6;font-family:Arial,sans-serif;color:#173d4d}
-.app{max-width:850px;margin:20px auto;background:white;border-radius:16px;overflow:hidden;box-shadow:0 5px 25px #0001}
-header{background:linear-gradient(120deg,#092e3d,#18586c);color:white;padding:32px 24px}
-header small{color:#ffb32c;font-weight:bold;letter-spacing:1px}
-h1{font-size:clamp(26px,5vw,39px);line-height:1.15}
-h2{font-size:23px;line-height:1.3}
-.tabs{display:flex;gap:8px;padding:12px;background:#103d4c}
-button,.cta{border:0;border-radius:8px;padding:14px 18px;background:#ffb32c;color:#103d4c;font-weight:bold;font-size:15px;cursor:pointer;text-decoration:none;text-align:center}
-button:disabled{opacity:.4;cursor:default}
-.tabs button{flex:1;background:#28596b;color:white}
-.tabs button.active{background:#ffb32c;color:#103d4c}
-main{padding:25px}
-.option{display:block;border:1px solid #cbd9df;padding:15px;border-radius:9px;margin:10px 0;cursor:pointer;line-height:1.5}
-.option:has(input:checked){border:2px solid #df991c;background:#fff8e8}
-input{accent-color:#e49b18}
-.progress{height:7px;background:#e8eef0;border-radius:8px;margin:20px 0;overflow:hidden}
-.bar{height:100%;background:#ffb32c}
-.actions{display:flex;justify-content:space-between;gap:10px;margin-top:24px;flex-wrap:wrap}
-.secondary{background:#e8eff2}
-.feedback,.result{background:#eef5f6;border-radius:9px;padding:17px;margin-top:18px;line-height:1.5}
-.feedback{border-left:4px solid #df991c}
-.hidden{display:none}
-.muted{color:#627b86;font-size:13px}
-footer{padding:18px 25px;background:#f0f4f5;color:#627b86;font-size:12px;line-height:1.5}
-@media(max-width:550px){.tabs{flex-direction:column}main{padding:18px}.app{margin:0;border-radius:0}}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f2f5f6;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #173d4d;
+}
+
+.app {
+  max-width: 850px;
+  margin: 20px auto;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 25px #00000012;
+}
+
+header {
+  background: linear-gradient(120deg, #092e3d, #18586c);
+  color: white;
+  padding: 30px 24px;
+}
+
+header small {
+  color: #ffb32c;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: clamp(26px, 5vw, 39px);
+  line-height: 1.15;
+  margin: 15px 0;
+}
+
+h2 {
+  font-size: 23px;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+p {
+  line-height: 1.55;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: #103d4c;
+}
+
+button,
+.cta {
+  border: 0;
+  border-radius: 8px;
+  padding: 14px 18px;
+  background: #ffb32c;
+  color: #103d4c;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  font-family: inherit;
+}
+
+button:disabled {
+  opacity: .4;
+  cursor: default;
+}
+
+.tabs button {
+  flex: 1;
+  background: #28596b;
+  color: white;
+}
+
+.tabs button.active {
+  background: #ffb32c;
+  color: #103d4c;
+}
+
+main {
+  padding: 25px;
+  min-height: 340px;
+}
+
+.option {
+  display: block;
+  border: 1px solid #cbd9df;
+  padding: 15px;
+  border-radius: 9px;
+  margin: 10px 0;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+.option:has(input:checked) {
+  border: 2px solid #df991c;
+  background: #fff8e8;
+}
+
+input {
+  accent-color: #e49b18;
+}
+
+.progress {
+  height: 7px;
+  background: #e8eef0;
+  border-radius: 8px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  background: #ffb32c;
+  transition: width .2s;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.secondary {
+  background: #e8eff2;
+}
+
+.feedback,
+.result {
+  background: #eef5f6;
+  border-radius: 9px;
+  padding: 17px;
+  margin-top: 18px;
+  line-height: 1.5;
+}
+
+.feedback {
+  border-left: 4px solid #df991c;
+}
+
+.feedback p:last-child,
+.result p:last-child {
+  margin-bottom: 0;
+}
+
+.feedback strong,
+.result strong {
+  color: #103d4c;
+}
+
+.result.good {
+  border-left: 4px solid #38845a;
+}
+
+.result.medium {
+  border-left: 4px solid #df991c;
+}
+
+.result.low {
+  border-left: 4px solid #b94b40;
+}
+
+.answer-review {
+  margin-top: 28px;
+}
+
+.answer-review .feedback {
+  margin-top: 12px;
+}
+
+.hidden {
+  display: none;
+}
+
+.muted {
+  color: #627b86;
+  font-size: 13px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #627b86;
+  text-transform: uppercase;
+}
+
+.note {
+  font-size: 13px;
+  color: #627b86;
+}
+
+.summary-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #d8e4e8;
+}
+
+.summary-item:last-child {
+  border-bottom: 0;
+}
+
+.summary-item .muted {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer {
+  padding: 18px 25px;
+  background: #f0f4f5;
+  color: #627b86;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (max-width: 550px) {
+  .app {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  header {
+    padding: 20px 18px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    margin: 12px 0;
+  }
+
+  header p {
+    margin: 9px 0;
+    line-height: 1.4;
+    font-size: 14px;
+  }
+
+  .tabs {
+    flex-direction: column;
+    gap: 7px;
+    padding: 10px;
+  }
+
+  .tabs button {
+    padding: 12px;
+  }
+
+  main {
+    padding: 18px;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions button,
+  .actions .cta {
+    width: 100%;
+  }
+
+  footer {
+    padding: 16px 18px;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <div class="app">
+
 <header>
-<small>SK-STAPLERTRAINING</small>
-<h1>Wissen & Sicherheit<br>im Staplerbetrieb</h1>
-<p>Testen Sie Ihr Wissen oder finden Sie die passende Inhouse-Schulung für Ihren Betrieb.</p>
-<p>Grünstadt · Umkreis ca. 100 km</p>
+  <small>SK-STAPLERTRAINING</small>
+
+  <h1>
+    Wissen & Sicherheit<br>
+    im Staplerbetrieb
+  </h1>
+
+  <p>
+    Testen Sie Ihr Wissen oder finden Sie die passende
+    Inhouse-Schulung für Ihren Betrieb.
+  </p>
+
+  <p>Grünstadt · Umkreis ca. 100 km</p>
 </header>
-<nav class="tabs">
-<button id="tq" class="active" type="button">Stapler-Sicherheitscheck</button>
-<button id="tb" type="button">Schulungsberater</button>
+
+<nav class="tabs" aria-label="Anwendung auswählen">
+  <button id="tq" class="active" type="button">
+    Stapler-Sicherheitscheck
+  </button>
+
+  <button id="tb" type="button">
+    Schulungsberater
+  </button>
 </nav>
+
 <main>
-<section id="quiz"></section>
-<section id="berater" class="hidden"></section>
+  <section id="quiz"></section>
+  <section id="berater" class="hidden"></section>
 </main>
-<footer>Der Wissenstest dient ausschließlich der freiwilligen Orientierung und ersetzt keine vorgeschriebene Ausbildung oder Sicherheitsunterweisung. Empfehlungen werden individuell geprüft.</footer>
+
+<footer>
+  Der Wissenstest dient ausschließlich der freiwilligen
+  Orientierung und ersetzt weder eine vorgeschriebene Ausbildung
+  noch eine betriebliche Sicherheitsunterweisung.
+
+  Die Schulungsempfehlungen sind unverbindlich und werden
+  individuell anhand der betrieblichen Anforderungen geprüft.
+</footer>
+
 </div>
+
 <script>
-(()=>{
+(() => {
 "use strict";
-const $=id=>document.getElementById(id);
-const fragen=[
-["Wie wird eine Last während der Fahrt grundsätzlich transportiert?",["Möglichst hoch","In niedriger, geeigneter Transportstellung","Auf Augenhöhe"],1,"Eine niedrige Transportstellung unterstützt die Standsicherheit."],
-["Wer darf einen Gabelstapler selbstständig führen?",["Jeder mit Pkw-Führerschein","Jeder Lagermitarbeiter","Geeignete, ausgebildete, befähigte und beauftragte Personen"],2,"Eignung, Ausbildung, Befähigungsnachweis und Beauftragung sind erforderlich."],
-["Wie oft muss die Sicherheitsunterweisung grundsätzlich wiederholt werden?",["Mindestens jährlich","Alle drei Jahre","Nur nach einem Unfall"],0,"Unterweisungen sind mindestens jährlich und zusätzlich anlassbezogen erforderlich."],
-["Was ist bei einem sicherheitsrelevanten Defekt zu tun?",["Weiterfahren","Nur unbeladen fahren","Gerät sicher abstellen, weitere Benutzung verhindern und Mangel melden"],2,"Nicht betriebssichere Geräte dürfen nicht weiterverwendet werden."],
-["Was tun Sie bei eingeschränkter Sicht?",["Last anheben","Sichere Fahrweise wählen, gegebenenfalls rückwärtsfahren oder geeignet einweisen lassen","Einfach hupen"],1,"Der Fahrweg muss ausreichend einsehbar sein."],
-["Was gehört zur Kontrolle vor Arbeitsbeginn?",["Vorgesehene Sicht- und Funktionsprüfung","Nur Tankanzeige prüfen","Keine Kontrolle nötig"],0,"Die vorgeschriebenen Kontrollen müssen durchgeführt werden."],
-["Wie ist die Fahrgeschwindigkeit zu wählen?",["Immer möglichst schnell","An Last, Sicht, Boden und Verkehr angepasst","Nur abhängig von der Entfernung"],1,"Das Fahrzeug muss jederzeit sicher beherrscht werden können."],
-["Darf eine Last über Personen bewegt werden?",["Ja, wenn sie gesichert ist","Ja, bei geringer Höhe","Nein"],2,"Lasten dürfen nicht über Personen hinweggeführt werden."],
-["Was ist bei der Tragfähigkeit entscheidend?",["Nur das Lastgewicht","Tragfähigkeitsangaben einschließlich Lastschwerpunkt und Anbaugeräten","Kurze Überlastung ist erlaubt"],1,"Das Tragfähigkeitsdiagramm ist zu beachten."],
-["Wie wird ein Stapler sicher abgestellt?",["Gabeln absenken und Fahrzeug sichern","Motor laufen lassen","Gabeln angehoben lassen"],0,"Das Fahrzeug muss gegen unbeabsichtigte Bewegung und unbefugte Benutzung gesichert werden."],
-["Was gilt beim Umgang mit Fußgängern?",["Hupen genügt","Sichere Abstände und betriebliche Verkehrsregeln beachten","Fußgänger müssen immer ausweichen"],1,"Fußgänger müssen ausreichend geschützt werden."],
-["Darf man auf den Gabelzinken mitfahren?",["Ja, langsam","Ja, wenn man sich festhält","Nein"],2,"Gabelzinken sind keine zugelassene Personenbeförderungseinrichtung."],
-["Was gilt beim Befahren von Steigungen?",["Beliebig wenden","Immer mit angehobener Last fahren","Herstellerangaben und betriebliche Vorgaben beachten"],2,"Steigungen erfordern eine geeignete Fahrtrichtung und Laststellung."],
-["Was bedeutet die betriebliche Beauftragung?",["Sie ersetzt die Ausbildung","Sie berechtigt im festgelegten betrieblichen Rahmen bei erfüllten Voraussetzungen","Sie gilt automatisch in allen Betrieben"],1,"Die Beauftragung ist betriebsbezogen."],
-["Wie fahren Sie an unübersichtlichen Kreuzungen?",["Beschleunigen","Geschwindigkeit reduzieren und erforderlichenfalls Warnzeichen geben","Augen schließen und hupen"],1,"Die Fahrweise muss den Sichtverhältnissen angepasst werden."],
-["Was gilt beim Rückwärtsfahren?",["Ohne Blick nach hinten fahren","Rückwärtigen Fahrweg ausreichend kontrollieren","Immer mit Höchstgeschwindigkeit fahren"],1,"Der Fahrweg muss sicher überblickt werden können."],
-["Was tun Sie bei einer instabilen Last?",["Trotzdem transportieren","Last zunächst sicher aufnehmen oder sichern","Gabeln maximal anheben"],1,"Die Last muss sicher aufgenommen und transportiert werden."],
-["Wofür dient das Tragfähigkeitsdiagramm?",["Zur Bestimmung der zulässigen Belastung","Zur Anzeige der Geschwindigkeit","Zur Wartungsplanung"],0,"Die zulässige Tragfähigkeit hängt unter anderem vom Lastschwerpunkt ab."],
-["Dürfen Fluchtwege zugestellt werden?",["Kurzzeitig immer","Nur während der Pause","Nein"],2,"Flucht- und Rettungswege müssen freigehalten werden."],
-["Was ist beim Laden einer Traktionsbatterie wichtig?",["Beliebige Steckdose verwenden","Vorgesehene Ladeeinrichtung und Sicherheitsvorgaben beachten","In jedem Raum laden"],1,"Die Herstellerangaben und Schutzmaßnahmen des Ladebereichs gelten."],
-["Was tun Sie bei einer ungewöhnlichen Warnanzeige?",["Ignorieren","Nach Betriebsanweisung handeln und gegebenenfalls sicher abstellen","Warnleuchte abkleben"],1,"Warnmeldungen müssen entsprechend ihrer Bedeutung behandelt werden."],
-["Wer darf sicherheitsrelevante Reparaturen durchführen?",["Jeder Fahrer","Beliebige Besucher","Dafür befähigte beziehungsweise autorisierte Personen"],2,"Reparaturen erfordern die entsprechende Fachkunde."],
-["Was gilt beim Einsatz eines Anbaugeräts?",["Tragfähigkeit und Herstellerfreigaben beachten","Immer volle ursprüngliche Tragfähigkeit annehmen","Keine zusätzlichen Vorgaben"],0,"Anbaugeräte können die Resttragfähigkeit verändern."],
-["Wie ist eine Palette aufzunehmen?",["Mit nur einer Gabelzinke","Mit geeigneter Gabelstellung und ausreichender Aufnahme","Immer schräg"],1,"Die Last muss sicher und bestimmungsgemäß aufgenommen werden."],
-["Was gilt bei nassem oder beschädigtem Boden?",["Schneller fahren","Risiko ignorieren","Fahrweise anpassen und Gefahrenstelle melden"],2,"Bodenverhältnisse beeinflussen Bremsweg und Standsicherheit."],
-["Darf man unter angehobenen Gabeln stehen?",["Nein","Ja, wenn der Motor aus ist","Ja, kurzzeitig"],0,"Der Gefahrenbereich unter angehobenen Lastaufnahmemitteln ist freizuhalten."],
-["Was gilt bei der Verwendung eines Sicherheitsgurts?",["Nur bei Regen verwenden","Vorgesehenes Rückhaltesystem bestimmungsgemäß benutzen","Immer offen lassen"],1,"Vorgesehene Rückhaltesysteme müssen entsprechend den Vorgaben benutzt werden."],
-["Was tun Sie bei einem Beinaheunfall?",["Verschweigen","Nur weiterfahren","Entsprechend den betrieblichen Vorgaben melden"],2,"Auch Beinaheunfälle liefern wichtige Hinweise auf Gefährdungen."],
-["Was ist beim Befahren einer Ladebrücke wichtig?",["Tragfähigkeit, Sicherung und Eignung prüfen","Einfach mit Schwung fahren","Nur auf die Farbe achten"],0,"Die Ladebrücke und die beteiligten Fahrzeuge müssen geeignet und gesichert sein."],
-["Was ist beim Verlassen des Staplers zu beachten?",["Fahrzeug ungesichert zurücklassen","Stapler ordnungsgemäß sichern","Last angehoben lassen"],1,"Vor dem Verlassen ist das Fahrzeug sicher abzustellen."]
+
+const $ = id => document.getElementById(id);
+
+/* =========================================
+   SICHERHEITSCHECK – FRAGENPOOL
+========================================= */
+
+const fragen = [
+
+[
+  "Wie wird eine Last während der Fahrt grundsätzlich transportiert?",
+  [
+    "Möglichst hoch",
+    "In niedriger, geeigneter Transportstellung",
+    "Auf Augenhöhe"
+  ],
+  1,
+  "Eine niedrige Transportstellung unterstützt die Standsicherheit."
+],
+
+[
+  "Wer darf einen Gabelstapler selbstständig führen?",
+  [
+    "Jeder mit Pkw-Führerschein",
+    "Jeder Lagermitarbeiter",
+    "Geeignete, ausgebildete, befähigte und beauftragte Personen"
+  ],
+  2,
+  "Eignung, Ausbildung, Befähigungsnachweis und betriebliche Beauftragung sind erforderlich."
+],
+
+[
+  "Wie oft muss die Sicherheitsunterweisung grundsätzlich wiederholt werden?",
+  [
+    "Mindestens jährlich",
+    "Alle drei Jahre",
+    "Nur nach einem Unfall"
+  ],
+  0,
+  "Unterweisungen sind mindestens jährlich und zusätzlich anlassbezogen erforderlich."
+],
+
+[
+  "Was ist bei einem sicherheitsrelevanten Defekt zu tun?",
+  [
+    "Weiterfahren",
+    "Nur unbeladen fahren",
+    "Gerät sicher abstellen, weitere Benutzung verhindern und Mangel melden"
+  ],
+  2,
+  "Nicht betriebssichere Geräte dürfen nicht weiterverwendet werden."
+],
+
+[
+  "Was tun Sie bei eingeschränkter Sicht?",
+  [
+    "Last anheben",
+    "Sichere Fahrweise wählen, gegebenenfalls rückwärtsfahren oder geeignet einweisen lassen",
+    "Einfach hupen"
+  ],
+  1,
+  "Der Fahrweg muss ausreichend einsehbar sein. Die Fahrweise ist den Sichtverhältnissen anzupassen."
+],
+
+[
+  "Was gehört zur Kontrolle vor Arbeitsbeginn?",
+  [
+    "Die vorgesehene Sicht- und Funktionsprüfung",
+    "Nur die Tankanzeige prüfen",
+    "Keine Kontrolle nötig"
+  ],
+  0,
+  "Die vorgeschriebenen Kontrollen vor Arbeitsbeginn müssen durchgeführt werden."
+],
+
+[
+  "Wie ist die Fahrgeschwindigkeit zu wählen?",
+  [
+    "Immer möglichst schnell",
+    "An Last, Sicht, Boden und Verkehr angepasst",
+    "Nur abhängig von der Entfernung"
+  ],
+  1,
+  "Das Fahrzeug muss jederzeit sicher beherrscht werden können."
+],
+
+[
+  "Darf eine Last über Personen bewegt werden?",
+  [
+    "Ja, wenn sie gesichert ist",
+    "Ja, bei geringer Höhe",
+    "Nein"
+  ],
+  2,
+  "Lasten dürfen nicht über Personen hinweggeführt werden."
+],
+
+[
+  "Was ist bei der Tragfähigkeit entscheidend?",
+  [
+    "Nur das Lastgewicht",
+    "Tragfähigkeitsangaben einschließlich Lastschwerpunkt und Anbaugeräten",
+    "Eine kurze Überlastung ist erlaubt"
+  ],
+  1,
+  "Das Tragfähigkeitsdiagramm und mögliche Einschränkungen durch Anbaugeräte sind zu beachten."
+],
+
+[
+  "Wie wird ein Stapler sicher abgestellt?",
+  [
+    "Gabeln absenken und Fahrzeug sichern",
+    "Motor laufen lassen",
+    "Gabeln angehoben lassen"
+  ],
+  0,
+  "Das Fahrzeug muss gegen unbeabsichtigte Bewegung und unbefugte Benutzung gesichert werden."
+],
+
+[
+  "Was gilt beim Umgang mit Fußgängern?",
+  [
+    "Hupen genügt",
+    "Sichere Abstände und betriebliche Verkehrsregeln beachten",
+    "Fußgänger müssen immer ausweichen"
+  ],
+  1,
+  "Fußgänger müssen im innerbetrieblichen Verkehr ausreichend geschützt werden."
+],
+
+[
+  "Darf man auf den Gabelzinken mitfahren?",
+  [
+    "Ja, wenn langsam gefahren wird",
+    "Ja, wenn man sich festhält",
+    "Nein"
+  ],
+  2,
+  "Gabelzinken sind keine zugelassene Personenbeförderungseinrichtung."
+],
+
+[
+  "Was gilt beim Befahren von Steigungen?",
+  [
+    "Beliebig wenden",
+    "Immer mit angehobener Last fahren",
+    "Herstellerangaben und betriebliche Vorgaben beachten"
+  ],
+  2,
+  "Steigungen erfordern eine geeignete Fahrtrichtung und Laststellung."
+],
+
+[
+  "Was bedeutet die betriebliche Beauftragung?",
+  [
+    "Sie ersetzt die Ausbildung",
+    "Sie berechtigt im festgelegten betrieblichen Rahmen bei erfüllten Voraussetzungen",
+    "Sie gilt automatisch in allen Betrieben"
+  ],
+  1,
+  "Die Beauftragung ist betriebsbezogen und ersetzt keine erforderliche Qualifikation."
+],
+
+[
+  "Wie fahren Sie an unübersichtlichen Kreuzungen?",
+  [
+    "Beschleunigen",
+    "Geschwindigkeit reduzieren und erforderlichenfalls Warnzeichen geben",
+    "Augen schließen und hupen"
+  ],
+  1,
+  "Die Fahrweise muss den Sichtverhältnissen angepasst werden."
+],
+
+[
+  "Was gilt beim Rückwärtsfahren?",
+  [
+    "Ohne Blick nach hinten fahren",
+    "Den rückwärtigen Fahrweg ausreichend kontrollieren",
+    "Immer mit Höchstgeschwindigkeit fahren"
+  ],
+  1,
+  "Der rückwärtige Fahrweg muss sicher überblickt werden können."
+],
+
+[
+  "Was tun Sie bei einer instabilen Last?",
+  [
+    "Trotzdem transportieren",
+    "Last zunächst sicher aufnehmen oder sichern",
+    "Gabeln maximal anheben"
+  ],
+  1,
+  "Die Last muss sicher und bestimmungsgemäß aufgenommen und transportiert werden."
+],
+
+[
+  "Wofür dient das Tragfähigkeitsdiagramm?",
+  [
+    "Zur Bestimmung der zulässigen Belastung",
+    "Zur Anzeige der Geschwindigkeit",
+    "Zur Wartungsplanung"
+  ],
+  0,
+  "Die zulässige Tragfähigkeit hängt unter anderem vom Lastschwerpunkt ab."
+],
+
+[
+  "Dürfen Fluchtwege zugestellt werden?",
+  [
+    "Kurzzeitig immer",
+    "Nur während der Pause",
+    "Nein"
+  ],
+  2,
+  "Flucht- und Rettungswege müssen freigehalten werden."
+],
+
+[
+  "Was ist beim Laden einer Traktionsbatterie wichtig?",
+  [
+    "Eine beliebige Steckdose verwenden",
+    "Vorgesehene Ladeeinrichtung und Sicherheitsvorgaben beachten",
+    "In jedem beliebigen Raum laden"
+  ],
+  1,
+  "Die Herstellerangaben und die Schutzmaßnahmen des Ladebereichs sind zu beachten."
+],
+
+[
+  "Was tun Sie bei einer ungewöhnlichen Warnanzeige?",
+  [
+    "Ignorieren",
+    "Nach Betriebsanweisung handeln und gegebenenfalls sicher abstellen",
+    "Warnleuchte abkleben"
+  ],
+  1,
+  "Warnmeldungen müssen entsprechend ihrer Bedeutung behandelt werden."
+],
+
+[
+  "Wer darf sicherheitsrelevante Reparaturen durchführen?",
+  [
+    "Jeder Fahrer",
+    "Beliebige Besucher",
+    "Dafür befähigte beziehungsweise autorisierte Personen"
+  ],
+  2,
+  "Sicherheitsrelevante Reparaturen erfordern die entsprechende Fachkunde."
+],
+
+[
+  "Was gilt beim Einsatz eines Anbaugeräts?",
+  [
+    "Tragfähigkeit und Herstellerfreigaben beachten",
+    "Immer die volle ursprüngliche Tragfähigkeit annehmen",
+    "Keine zusätzlichen Vorgaben"
+  ],
+  0,
+  "Anbaugeräte können die Resttragfähigkeit des Staplers verändern."
+],
+
+[
+  "Wie ist eine Palette aufzunehmen?",
+  [
+    "Mit nur einer Gabelzinke",
+    "Mit geeigneter Gabelstellung und ausreichender Aufnahme",
+    "Immer schräg"
+  ],
+  1,
+  "Die Last muss sicher und bestimmungsgemäß aufgenommen werden."
+],
+
+[
+  "Was gilt bei nassem oder beschädigtem Boden?",
+  [
+    "Schneller fahren",
+    "Das Risiko ignorieren",
+    "Fahrweise anpassen und Gefahrenstelle melden"
+  ],
+  2,
+  "Bodenverhältnisse beeinflussen Bremsweg, Haftung und Standsicherheit."
+],
+
+[
+  "Darf man unter angehobenen Gabeln stehen?",
+  [
+    "Nein",
+    "Ja, wenn der Motor aus ist",
+    "Ja, kurzzeitig"
+  ],
+  0,
+  "Der Gefahrenbereich unter angehobenen Lastaufnahmemitteln ist freizuhalten."
+],
+
+[
+  "Was gilt bei der Verwendung eines Sicherheitsgurts?",
+  [
+    "Nur bei Regen verwenden",
+    "Vorgesehenes Rückhaltesystem bestimmungsgemäß benutzen",
+    "Immer offen lassen"
+  ],
+  1,
+  "Vorgesehene Rückhaltesysteme müssen entsprechend den Vorgaben benutzt werden."
+],
+
+[
+  "Was tun Sie bei einem Beinaheunfall?",
+  [
+    "Verschweigen",
+    "Nur weiterfahren",
+    "Entsprechend den betrieblichen Vorgaben melden"
+  ],
+  2,
+  "Auch Beinaheunfälle liefern wichtige Hinweise auf Gefährdungen."
+],
+
+[
+  "Was ist beim Befahren einer Ladebrücke wichtig?",
+  [
+    "Tragfähigkeit, Sicherung und Eignung prüfen",
+    "Einfach mit Schwung fahren",
+    "Nur auf die Farbe achten"
+  ],
+  0,
+  "Die Ladebrücke und die beteiligten Fahrzeuge müssen geeignet und gesichert sein."
+],
+
+[
+  "Was ist beim Verlassen des Staplers zu beachten?",
+  [
+    "Fahrzeug ungesichert zurücklassen",
+    "Stapler ordnungsgemäß sichern",
+    "Last angehoben lassen"
+  ],
+  1,
+  "Vor dem Verlassen ist das Fahrzeug sicher abzustellen."
+]
+
 ];
-let pool=[],qi=0,qa={};
-function start(){
-pool=[...fragen].sort(()=>Math.random()-.5).slice(0,5);
-qi=0;qa={};renderQuiz();
+
+/* =========================================
+   ZUFÄLLIGE FRAGENAUSWAHL
+========================================= */
+
+const quizLength = 10;
+
+function shuffle(items) {
+  const result = [...items];
+
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+
+  return result;
 }
-function renderQuiz(){
-const el=$("quiz");
-if(qi===5){
-const n=pool.filter((q,i)=>qa[i]===q[2]).length;
-el.innerHTML=`<p class="muted">IHR ERGEBNIS</p><h2>${n} von 5 Fragen richtig</h2><div class="result"><strong>${n===5?"Sehr gut!":n>=3?"Gutes Ergebnis!":"Hier besteht noch Lernpotenzial."}</strong><p>Dieser Test dient der freiwilligen Selbsteinschätzung.</p></div><h2>Ihre Mitarbeiter sicher qualifizieren</h2><p>Praxisnahe Inhouse-Schulungen direkt in Ihrem Betrieb.</p><div class="actions"><button id="again">Erneut testen</button><button id="toAdvisor">Schulungsbedarf ermitteln</button></div>`;
-$("again").onclick=start;$("toAdvisor").onclick=()=>tab("berater");return;
+
+let pool = [];
+let qi = 0;
+let qa = {};
+
+function startQuiz() {
+  pool = shuffle(fragen).slice(0, quizLength);
+  qi = 0;
+  qa = {};
+
+  renderQuiz();
 }
-const q=pool[qi],v=qa[qi];
-el.innerHTML=`<p class="muted">Frage ${qi+1} von 5</p><div class="progress"><div class="bar" style="width:${(qi+1)*20}%"></div></div><h2>${q[0]}</h2>${q[1].map((a,i)=>`<label class="option"><input type="radio" name="qa" value="${i}" ${v===i?"checked":""}> ${a}</label>`).join("")}${v===undefined?"":`<div class="feedback"><strong>${v===q[2]?"Richtig!":"Nicht ganz richtig."}</strong><p>${q[3]}</p></div>`}<div class="actions"><button id="back" class="secondary" ${qi===0?"disabled":""}>Zurück</button><button id="next" ${v===undefined?"disabled":""}>${qi===4?"Auswertung":"Weiter"}</button></div>`;
-el.querySelectorAll('[name="qa"]').forEach(x=>x.onchange=()=>{qa[qi]=Number(x.value);renderQuiz()});
-$("back").onclick=()=>{qi--;renderQuiz()};
-$("next").onclick=()=>{qi++;renderQuiz()};
+
+/* =========================================
+   QUIZ-DARSTELLUNG
+========================================= */
+
+function renderQuiz() {
+  const el = $("quiz");
+
+  if (qi === quizLength) {
+    renderQuizResult();
+    return;
+  }
+
+  const q = pool[qi];
+  const selected = qa[qi];
+
+  el.innerHTML = `
+    <p class="eyebrow">
+      Sicherheitscheck
+    </p>
+
+    <p class="muted">
+      Frage ${qi + 1} von ${quizLength}
+    </p>
+
+    <div class="progress">
+      <div class="bar"
+        style="width:${((qi + 1) / quizLength) * 100}%">
+      </div>
+    </div>
+
+    <h2>${q[0]}</h2>
+
+    ${q[1].map((answer, i) => `
+      <label class="option">
+        <input
+          type="radio"
+          name="qa"
+          value="${i}"
+          ${selected === i ? "checked" : ""}
+        >
+        ${answer}
+      </label>
+    `).join("")}
+
+    ${
+      selected === undefined
+      ? ""
+      : `
+        <div class="feedback">
+          <strong>
+            ${selected === q[2] ? "Richtig!" : "Nicht ganz richtig."}
+          </strong>
+
+          <p>${q[3]}</p>
+        </div>
+      `
+    }
+
+    <div class="actions">
+      <button
+        id="back"
+        class="secondary"
+        ${qi === 0 ? "disabled" : ""}
+      >
+        Zurück
+      </button>
+
+      <button
+        id="next"
+        ${selected === undefined ? "disabled" : ""}
+      >
+        ${qi === quizLength - 1 ? "Auswertung anzeigen" : "Weiter"}
+      </button>
+    </div>
+  `;
+
+  el.querySelectorAll('[name="qa"]').forEach(input => {
+    input.onchange = () => {
+      qa[qi] = Number(input.value);
+      renderQuiz();
+    };
+  });
+
+  $("back").onclick = () => {
+    qi--;
+    renderQuiz();
+  };
+
+  $("next").onclick = () => {
+    qi++;
+    renderQuiz();
+  };
 }
-const bq=[
-["Welche Geräte setzen Sie ein?",["Gabelstapler mit Fahrersitz oder Fahrerstand","Mitgänger-Flurförderzeuge","Beide Gerätearten","Noch nicht sicher"]],
-["Welchen Qualifikationsstand haben Ihre Mitarbeiter?",["Noch keine entsprechende Ausbildung","Bereits ausgebildet","Unterschiedliche Qualifikationen","Noch nicht sicher"]],
-["Was ist der Anlass Ihrer Anfrage?",["Erstmalige Ausbildung","Jährliche Sicherheitsunterweisung","Auffrischung oder zusätzliche Qualifizierung","Allgemeine Bedarfsprüfung"]],
-["Wie viele Mitarbeiter sollen geschult werden?",["1–3","4–6","7–10","Mehr als 10"]]
+
+/* =========================================
+   QUIZ-AUSWERTUNG
+========================================= */
+
+function renderQuizResult() {
+  const el = $("quiz");
+
+  const score = pool.filter(
+    (q, i) => qa[i] === q[2]
+  ).length;
+
+  const mistakes = pool
+    .map((q, i) => ({ q, i }))
+    .filter(item => qa[item.i] !== item.q[2]);
+
+  let headline;
+  let resultClass;
+  let message;
+
+  if (score === 10) {
+    headline = "Sehr gut!";
+    resultClass = "good";
+    message =
+      "Sie haben alle Fragen richtig beantwortet.";
+  } else if (score >= 7) {
+    headline = "Gutes Ergebnis!";
+    resultClass = "good";
+    message =
+      "Einige Sicherheitsthemen sollten Sie nochmals auffrischen.";
+  } else if (score >= 5) {
+    headline = "Da geht noch mehr!";
+    resultClass = "medium";
+    message =
+      "Nutzen Sie die folgenden Erklärungen, um Ihr Wissen zu vertiefen.";
+  } else {
+    headline = "Hier besteht Lernpotenzial.";
+    resultClass = "low";
+    message =
+      "Mehrere grundlegende Sicherheitsthemen sollten nochmals behandelt werden.";
+  }
+
+  const review = mistakes.length
+    ? `
+      <div class="answer-review">
+        <h3>Diese Fragen sollten Sie nochmals ansehen:</h3>
+
+        ${mistakes.map(({q, i}) => `
+          <div class="feedback">
+            <strong>${q[0]}</strong>
+
+            <p>
+              <span class="muted">Ihre Antwort:</span><br>
+              ${q[1][qa[i]]}
+            </p>
+
+            <p>
+              <span class="muted">Richtige Antwort:</span><br>
+              <strong>${q[1][q[2]]}</strong>
+            </p>
+
+            <p>${q[3]}</p>
+          </div>
+        `).join("")}
+      </div>
+    `
+    : `
+      <p>
+        Alle Fragen wurden richtig beantwortet.
+      </p>
+    `;
+
+  el.innerHTML = `
+    <p class="eyebrow">Ihr Ergebnis</p>
+
+    <h2>${score} von ${quizLength} Fragen richtig</h2>
+
+    <div class="result ${resultClass}">
+      <strong>${headline}</strong>
+      <p>${message}</p>
+    </div>
+
+    ${review}
+
+    <h2>Ihre Mitarbeiter sicher qualifizieren</h2>
+
+    <p>
+      SK-Staplertraining bietet praxisnahe
+      Inhouse-Schulungen direkt in Ihrem Betrieb.
+    </p>
+
+    <p class="note">
+      Der Sicherheitscheck ist eine freiwillige Selbsteinschätzung.
+      Das Ergebnis stellt keinen Ausbildungs- oder
+      Unterweisungsnachweis dar.
+    </p>
+
+    <div class="actions">
+      <button id="again">
+        Neuen Test starten
+      </button>
+
+      <button id="toAdvisor" class="secondary">
+        Schulungsbedarf ermitteln
+      </button>
+    </div>
+  `;
+
+  $("again").onclick = startQuiz;
+
+  $("toAdvisor").onclick = () => {
+    tab("berater");
+  };
+}
+
+/* =========================================
+   SCHULUNGSBERATER
+========================================= */
+
+const bq = [
+
+[
+  "Welche Geräte setzen Sie ein?",
+  [
+    "Gabelstapler mit Fahrersitz oder Fahrerstand",
+    "Mitgänger-Flurförderzeuge",
+    "Beide Gerätearten",
+    "Noch nicht sicher"
+  ]
+],
+
+[
+  "Welchen Qualifikationsstand haben Ihre Mitarbeiter?",
+  [
+    "Noch keine entsprechende Ausbildung",
+    "Bereits ausgebildet",
+    "Unterschiedliche Qualifikationen",
+    "Noch nicht sicher"
+  ]
+],
+
+[
+  "Was ist der Anlass Ihrer Anfrage?",
+  [
+    "Erstmalige Ausbildung",
+    "Jährliche Sicherheitsunterweisung",
+    "Auffrischung oder zusätzliche Qualifizierung",
+    "Allgemeine Bedarfsprüfung"
+  ]
+],
+
+[
+  "Wie viele Mitarbeiter sollen geschult werden?",
+  [
+    "1–3",
+    "4–6",
+    "7–10",
+    "Mehr als 10"
+  ]
+]
+
 ];
-let bi=0,ba={};
-function recommendation(){
-if(ba[0]===3||ba[1]===3||ba[2]===3)return "Individuelle Bedarfsanalyse";
-if(ba[0]===2)return "Kombinierter Schulungsbedarf";
-if(ba[2]===1)return "Jährliche Sicherheitsunterweisung";
-if(ba[0]===1)return "Qualifizierung für Mitgänger-Flurförderzeuge";
-if(ba[1]===0||ba[2]===0)return "Grundqualifikation Gabelstapler";
-if(ba[2]===2)return "Auffrischung oder zusätzliche Qualifizierung";
-return "Individuelle Bedarfsanalyse";
+
+let bi = 0;
+let ba = {};
+
+/* =========================================
+   INDIVIDUELLE EMPFEHLUNG
+========================================= */
+
+function recommendation() {
+  const geraete = ba[0];
+  const qualifikation = ba[1];
+  const anlass = ba[2];
+
+  if (
+    geraete === 3 ||
+    qualifikation === 3 ||
+    anlass === 3
+  ) {
+    return {
+      title: "Individuelle Bedarfsanalyse",
+      description:
+        "Gerne prüfen wir gemeinsam, welche Qualifizierung für Ihre eingesetzten Geräte und Mitarbeiter erforderlich ist."
+    };
+  }
+
+  if (anlass === 1) {
+    return {
+      title: geraete === 2
+        ? "Jährliche Sicherheitsunterweisung für beide Gerätearten"
+        : "Jährliche Sicherheitsunterweisung",
+
+      description:
+        "Wir empfehlen eine auf Ihre betrieblichen Gefährdungen, eingesetzten Geräte und Arbeitsabläufe abgestimmte Sicherheitsunterweisung. Eine erforderliche Grundqualifikation wird dadurch nicht ersetzt."
+    };
+  }
+
+  if (geraete === 2) {
+    if (qualifikation === 0 || anlass === 0) {
+      return {
+        title: "Grundqualifikation und Mitgänger-Qualifizierung",
+        description:
+          "Da beide Gerätearten eingesetzt werden, sollte der konkrete Qualifizierungsbedarf getrennt betrachtet und anschließend sinnvoll kombiniert werden."
+      };
+    }
+
+    return {
+      title: "Kombinierter Schulungsbedarf",
+      description:
+        "Wir empfehlen eine gemeinsame Abstimmung zum Qualifikationsstand Ihrer Mitarbeiter sowie zu erforderlichen Auffrischungen und zusätzlichen Qualifizierungen."
+    };
+  }
+
+  if (qualifikation === 0 || anlass === 0) {
+    if (geraete === 1) {
+      return {
+        title: "Erstqualifizierung Mitgänger-Flurförderzeuge",
+        description:
+          "Wir stimmen die Ausbildung auf die tatsächlich eingesetzten Mitgänger-Flurförderzeuge und Ihre betrieblichen Anforderungen ab."
+      };
+    }
+
+    return {
+      title: "Grundqualifikation Gabelstapler",
+      description:
+        "Für Mitarbeiter ohne entsprechende Ausbildung empfehlen wir eine geeignete Grundqualifikation mit Theorie und praktischer Ausbildung."
+    };
+  }
+
+  if (anlass === 2) {
+    return {
+      title: geraete === 1
+        ? "Auffrischung Mitgänger-Flurförderzeuge"
+        : "Auffrischung oder zusätzliche Qualifizierung",
+
+      description:
+        "Wir prüfen, welche Kenntnisse aufgefrischt werden sollten und ob aufgrund der Geräte oder Tätigkeiten weitere Qualifizierungsmaßnahmen notwendig sind."
+    };
+  }
+
+  if (geraete === 1) {
+    return {
+      title: "Qualifizierung für Mitgänger-Flurförderzeuge",
+      description:
+        "Wir prüfen den vorhandenen Kenntnisstand und stimmen den Schulungsumfang auf Ihre Mitgänger-Flurförderzeuge ab."
+    };
+  }
+
+  return {
+    title: "Individuelle Bedarfsanalyse",
+    description:
+      "Wir ermitteln gemeinsam eine geeignete Schulungslösung für Ihren Betrieb."
+  };
 }
-function renderAdvisor(){
-const el=$("berater");
-if(bi===4){
-const rec=recommendation();
-const details=bq.map((q,i)=>q[0]+"\n"+q[1][ba[i]]).join("\n\n");
-const mail="mailto:S.krystallakis@outlook.com?subject="+encodeURIComponent("Schulungsanfrage über SK-Staplertraining")+"&body="+encodeURIComponent("Guten Tag,\n\nich möchte eine Inhouse-Schulung anfragen.\n\nErste Empfehlung: "+rec+"\n\n"+details+"\n\nUnternehmen:\nAnsprechpartner:\nWunschtermin:\n\nMit freundlichen Grüßen");
-el.innerHTML=`<p class="muted">IHRE ERSTE EMPFEHLUNG</p><h2>${rec}</h2><p>Auf Grundlage Ihrer Angaben empfehlen wir eine individuelle Abstimmung.</p><div class="result">${bq.map((q,i)=>`<p><span class="muted">${q[0]}</span><br><strong>${q[1][ba[i]]}</strong></p>`).join("")}</div><p>Ihre Antworten werden in eine vorbereitete E-Mail übernommen. Bitte prüfen und ergänzen Sie diese vor dem Versand.</p><div class="actions"><a class="cta" id="mailLink">Unverbindliche Anfrage vorbereiten</a><button class="secondary" id="reset">Neu starten</button></div>`;
-$("mailLink").href=mail;
-$("reset").onclick=()=>{bi=0;ba={};renderAdvisor()};return;
+
+/* =========================================
+   BERATER-DARSTELLUNG
+========================================= */
+
+function renderAdvisor() {
+  const el = $("berater");
+
+  if (bi === bq.length) {
+    renderAdvisorResult();
+    return;
+  }
+
+  const question = bq[bi];
+  const selected = ba[bi];
+
+  el.innerHTML = `
+    <p class="eyebrow">
+      SK-Schulungsberater
+    </p>
+
+    <p class="muted">
+      Schritt ${bi + 1} von ${bq.length}
+    </p>
+
+    <div class="progress">
+      <div
+        class="bar"
+        style="width:${((bi + 1) / bq.length) * 100}%"
+      ></div>
+    </div>
+
+    <h2>${question[0]}</h2>
+
+    ${question[1].map((answer, i) => `
+      <label class="option">
+        <input
+          type="radio"
+          name="ba"
+          value="${i}"
+          ${selected === i ? "checked" : ""}
+        >
+        ${answer}
+      </label>
+    `).join("")}
+
+    <div class="actions">
+      <button
+        id="prev"
+        class="secondary"
+        ${bi === 0 ? "disabled" : ""}
+      >
+        Zurück
+      </button>
+
+      <button
+        id="forward"
+        ${selected === undefined ? "disabled" : ""}
+      >
+        ${
+          bi === bq.length - 1
+            ? "Empfehlung anzeigen"
+            : "Weiter"
+        }
+      </button>
+    </div>
+  `;
+
+  el.querySelectorAll('[name="ba"]').forEach(input => {
+    input.onchange = () => {
+      ba[bi] = Number(input.value);
+      renderAdvisor();
+    };
+  });
+
+  $("prev").onclick = () => {
+    bi--;
+    renderAdvisor();
+  };
+
+  $("forward").onclick = () => {
+    bi++;
+    renderAdvisor();
+  };
 }
-const q=bq[bi],v=ba[bi];
-el.innerHTML=`<p class="muted">Schritt ${bi+1} von 4</p><div class="progress"><div class="bar" style="width:${(bi+1)*25}%"></div></div><h2>${q[0]}</h2>${q[1].map((a,i)=>`<label class="option"><input type="radio" name="ba" value="${i}" ${v===i?"checked":""}> ${a}</label>`).join("")}<div class="actions"><button id="prev" class="secondary" ${bi===0?"disabled":""}>Zurück</button><button id="forward" ${v===undefined?"disabled":""}>${bi===3?"Empfehlung anzeigen":"Weiter"}</button></div>`;
-el.querySelectorAll('[name="ba"]').forEach(x=>x.onchange=()=>{ba[bi]=Number(x.value);renderAdvisor()});
-$("prev").onclick=()=>{bi--;renderAdvisor()};
-$("forward").onclick=()=>{bi++;renderAdvisor()};
+
+/* =========================================
+   BERATER-ERGEBNIS UND E-MAIL
+========================================= */
+
+function renderAdvisorResult() {
+  const el = $("berater");
+
+  const rec = recommendation();
+
+  const details = bq.map((question, i) => {
+    return question[0] + "\n" +
+      question[1][ba[i]];
+  }).join("\n\n");
+
+  const subject =
+    "Schulungsanfrage über SK-Staplertraining";
+
+  const body =
+    "Guten Tag,\n\n" +
+    "ich möchte eine Inhouse-Schulung anfragen.\n\n" +
+    "Erste Empfehlung:\n" +
+    rec.title + "\n\n" +
+    "Meine Angaben:\n\n" +
+    details + "\n\n" +
+    "Unternehmen:\n" +
+    "Ansprechpartner:\n" +
+    "Schulungsort:\n" +
+    "Wunschtermin:\n" +
+    "Weitere Angaben:\n\n" +
+    "Mit freundlichen Grüßen";
+
+  const mail =
+    "mailto:S.krystallakis@outlook.com" +
+    "?subject=" + encodeURIComponent(subject) +
+    "&body=" + encodeURIComponent(body);
+
+  el.innerHTML = `
+    <p class="eyebrow">
+      Ihre erste Empfehlung
+    </p>
+
+    <h2>${rec.title}</h2>
+
+    <div class="result good">
+      <strong>Unsere Einschätzung</strong>
+      <p>${rec.description}</p>
+    </div>
+
+    <h3>Zusammenfassung Ihrer Angaben</h3>
+
+    <div class="result">
+      ${bq.map((question, i) => `
+        <div class="summary-item">
+          <span class="muted">
+            ${question[0]}
+          </span>
+
+          <strong>
+            ${question[1][ba[i]]}
+          </strong>
+        </div>
+      `).join("")}
+    </div>
+
+    <p>
+      Möchten Sie ein unverbindliches Angebot erhalten?
+      Ihre Angaben werden automatisch in eine vorbereitete
+      E-Mail übernommen.
+    </p>
+
+    <p class="note">
+      Es werden keine Antworten automatisch versendet.
+      Sie können die E-Mail vor dem Versand prüfen und ergänzen.
+    </p>
+
+    <div class="actions">
+      <a class="cta" id="mailLink">
+        Unverbindliche Anfrage vorbereiten
+      </a>
+
+      <button class="secondary" id="reset">
+        Beratung neu starten
+      </button>
+    </div>
+  `;
+
+  $("mailLink").href = mail;
+
+  $("reset").onclick = () => {
+    bi = 0;
+    ba = {};
+    renderAdvisor();
+  };
 }
-function tab(which){
-$("quiz").classList.toggle("hidden",which!=="quiz");
-$("berater").classList.toggle("hidden",which!=="berater");
-$("tq").classList.toggle("active",which==="quiz");
-$("tb").classList.toggle("active",which==="berater");
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+function tab(which) {
+  $("quiz").classList.toggle(
+    "hidden",
+    which !== "quiz"
+  );
+
+  $("berater").classList.toggle(
+    "hidden",
+    which !== "berater"
+  );
+
+  $("tq").classList.toggle(
+    "active",
+    which === "quiz"
+  );
+
+  $("tb").classList.toggle(
+    "active",
+    which === "berater"
+  );
+
+  $("tq").setAttribute(
+    "aria-pressed",
+    String(which === "quiz")
+  );
+
+  $("tb").setAttribute(
+    "aria-pressed",
+    String(which === "berater")
+  );
 }
-$("tq").onclick=()=>tab("quiz");
-$("tb").onclick=()=>tab("berater");
-start();renderAdvisor();
+
+$("tq").onclick = () => tab("quiz");
+$("tb").onclick = () => tab("berater");
+
+/* =========================================
+   START
+========================================= */
+
+startQuiz();
+renderAdvisor();
+tab("quiz");
+
 })();
 </script>
+
 </body>
 </html>
-
